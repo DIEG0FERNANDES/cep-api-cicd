@@ -289,7 +289,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/ceps/busca/logradouro/Aquidauana",
+					"raw": "{{baseURL}}/ceps/busca/logradouro/Anástacio",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -297,7 +297,7 @@
 						"ceps",
 						"busca",
 						"logradouro",
-						"Aquidauana"
+						"Anástacio"
 					]
 				}
 			},
