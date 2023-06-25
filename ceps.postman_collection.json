@@ -46,7 +46,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"cep\": \"79200-000\",\r\n  \"logradouro\": \"Aquidauana\"\r\n}",
+					"raw": "{\r\n  \"cep\": \"79210-000\",\r\n  \"tipoCep\": \"Anástacio\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,7 +88,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cep\": \"79200000\",\r\n    \"logradouro\": \"Aquidauana\"\r\n}",
+					"raw": "{\r\n    \"cep\": \"79210000\",\r\n    \"tipoCep\": \"Anástacio\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -130,7 +130,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cep\": \"79200-000\",\r\n    \"logradouro\": \"\"\r\n}",
+					"raw": "{\r\n    \"cep\": \"79210-000\",\r\n    \"tipoCep\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -175,7 +175,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/ceps/busca/cep/79200-000",
+					"raw": "{{baseURL}}/ceps/busca/cep/79210-000",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -183,7 +183,7 @@
 						"ceps",
 						"busca",
 						"cep",
-						"79200-000"
+						"79210-000"
 					]
 				}
 			},
@@ -211,7 +211,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/ceps/busca/cep/79200-001",
+					"raw": "{{baseURL}}/ceps/busca/cep/79210-001",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -219,7 +219,7 @@
 						"ceps",
 						"busca",
 						"cep",
-						"79200-001"
+						"79210-001"
 					]
 				}
 			},
@@ -247,7 +247,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/ceps/busca/cep/79200000",
+					"raw": "{{baseURL}}/ceps/busca/cep/79210000",
 					"host": [
 						"{{baseURL}}"
 					],
@@ -255,7 +255,7 @@
 						"ceps",
 						"busca",
 						"cep",
-						"79200000"
+						"79210000"
 					]
 				}
 			},
@@ -271,8 +271,8 @@
 							"pm.test('deve recuperar o CEP de um logradouro previamente cadastrado',()=>{\r",
 							"    pm.response.to.have.status(200)\r",
 							"    const response = pm.response.json()\r",
-							"    const logradouro = 'Aquidauana';\r",
-							"    const expectedCep = '79200-000';\r",
+							"    const logradouro = 'Anátacio';\r",
+							"    const expectedCep = '79210-000';\r",
 							"    const {endereco} = response\r",
 							"    pm.expect(endereco._id).to.not.null\r",
 							"    pm.expect(endereco.cep).to.equal(expectedCep)\r",
@@ -294,8 +294,8 @@
 					"path": [
 						"ceps",
 						"busca",
-						"logradouro",
-						"Aquidauana"
+						"tipoCep",
+						"Anástacio"
 					]
 				}
 			},
@@ -330,7 +330,7 @@
 					"path": [
 						"ceps",
 						"busca",
-						"logradouro",
+						"tipoCep",
 						"Anastácio"
 					]
 				}
