@@ -94,7 +94,7 @@ describe('Testes sobre cadastro e consulta de Códigos de Endereçamento Postal'
   });
 
   it('deve retornar mensagem de não encontrado para um CEP não previamente cadastrado', () => {
-    const cep = '79200-001';
+    const cep = '79200-000';
 
     const requestOptions: Partial<Cypress.RequestOptions> = {
       method: 'GET',
