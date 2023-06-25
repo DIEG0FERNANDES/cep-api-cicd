@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "4d70e678-c60f-4261-a723-da8eade036c5",
-		"name": "CEP",
+		"_postman_id": "bf1bef8d-7b0e-455f-b27a-d74d6eda7201",
+		"name": "ceps",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25754974"
+		"_exporter_id": "26131612"
 	},
 	"item": [
 		{
@@ -114,7 +114,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('it should  not save a zip code with an invalid address',()=>{\r",
+							"pm.test('não deve salvar um CEP com um logradouro inválido',()=>{\r",
 							"    pm.response.to.have.status(400)\r",
 							"    const response = pm.response.json()\r",
 							"    const {mensagensDeErro} = response\r",
