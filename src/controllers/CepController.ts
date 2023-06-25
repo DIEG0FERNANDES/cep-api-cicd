@@ -67,4 +67,8 @@ export class CepController {
 
     res.json({ endereco: cepExistingObject });
   }
+  async delete(req: Request,res:Response){
+    await this._cepDAO.delete();
+    res.status(204).send('dados deletados')
+  }
 }
