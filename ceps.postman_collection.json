@@ -1,23 +1,40 @@
 {
 	"info": {
-		"_postman_id": "e149e2ac-4868-4362-9c8c-ba22138f7f81",
-		"name": "Consulta CEP",
+		"_postman_id": "4d70e678-c60f-4261-a723-da8eade036c5",
+		"name": "CEP",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "2645049"
+		"_exporter_id": "25754974"
 	},
 	"item": [
 		{
-			"name": "Save a new cep",
+			"name": "delete os bancos de dados",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/ceps",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"ceps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deve salvar um CEP com dados válidos",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('it should save a valid contact', () => {\r",
+							"pm.test('deve salvar um CEP com dados validos',()=>{\r",
 							"    pm.response.to.have.status(201)\r",
 							"    const response = pm.response.json()\r",
-							"    const { contact } = response\r",
-							"    pm.expect(contact._id).to.not.null\r",
+							"    const {mensagem} = response\r",
+							"    pm.expect(mensagem).to.equal('CEP cadastrado com sucesso')\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -29,7 +46,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"name\": \"{{contactName}}\",\r\n\t\"email\": \"sidney@email.com\",\r\n\t\"phone\": \"(99) 99999-9999\",\r\n\t\"birthday\": \"2004-02-29\"\r\n}",
+					"raw": "{\r\n  \"cep\": \"79200-000\",\r\n  \"logradouro\": \"Aquidauana\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,29 +54,29 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/contacts",
+					"raw": "{{baseURL}}/ceps",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"contacts"
+						"ceps"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Save a new contact with invalid name",
+			"name": "não deve salvar um CEP com um número de CEP inválido",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('it should not save a contact with invalid name', () => {\r",
+							"pm.test('nao deve salvar um CEP com um número de CEP inválido',()=>{\r",
 							"    pm.response.to.have.status(400)\r",
 							"    const response = pm.response.json()\r",
-							"    const { errorMessages } = response\r",
-							"    pm.expect(errorMessages[0]).to.equal('Name cannot be empty')\r",
+							"    const {mensagensDeErro} = response\r",
+							"    pm.expect(mensagensDeErro[0]).to.equal('Número de CEP inválido')\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -71,7 +88,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"name\": \"\",\r\n\t\"email\": \"sidney@email.com\",\r\n\t\"phone\": \"(99) 99999-9999\",\r\n\t\"birthday\": \"2004-02-29\"\r\n}",
+					"raw": "{\r\n    \"cep\": \"79200000\",\r\n    \"logradouro\": \"Aquidauana\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -79,29 +96,29 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/contacts",
+					"raw": "{{baseURL}}/ceps",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"contacts"
+						"ceps"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Save a new contact with invalid email",
+			"name": "não deve salvar um CEP com um logradouro inválido",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('it should not save a contact with invalid email', () => {\r",
+							"pm.test('não deve salvar um CEP com um logradouro inválido',()=>{\r",
 							"    pm.response.to.have.status(400)\r",
 							"    const response = pm.response.json()\r",
-							"    const { errorMessages } = response\r",
-							"    pm.expect(errorMessages[0]).to.equal('Invalid email')\r",
+							"    const {mensagensDeErro} = response\r",
+							"    pm.expect(mensagensDeErro[0]).to.equal('Logradouro inválido')\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -113,7 +130,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"name\": \"Sidney Sousa\",\r\n\t\"email\": \"sidney.email.com\",\r\n\t\"phone\": \"(99) 99999-9999\",\r\n\t\"birthday\": \"2004-02-29\"\r\n}",
+					"raw": "{\r\n    \"cep\": \"79200-000\",\r\n    \"logradouro\": \"\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -121,117 +138,33 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseURL}}/contacts",
+					"raw": "{{baseURL}}/ceps",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"contacts"
+						"ceps"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Save a new contact with invalid phone",
+			"name": "deve recuperar o logradouro de um CEP previamente cadastrado",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('it should not save a contact with invalid phone', () => {\r",
-							"    pm.response.to.have.status(400)\r",
-							"    const response = pm.response.json()\r",
-							"    const { errorMessages } = response\r",
-							"    pm.expect(errorMessages[0]).to.equal('Phone must have following pattern: (00) 00000-0000')\r",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\t\"name\": \"Sidney Sousa\",\r\n\t\"email\": \"sidney@email.com\",\r\n\t\"phone\": \"(99)99999-9999\",\r\n\t\"birthday\": \"2004-02-29\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/contacts",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"contacts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Save a new contact with invalid birthday",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('it should not save a contact with invalid birthday', () => {\r",
-							"    pm.response.to.have.status(400)\r",
-							"    const response = pm.response.json()\r",
-							"    const { errorMessages } = response\r",
-							"    pm.expect(errorMessages[0]).to.equal('Birthday must be previous to today')\r",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n\t\"name\": \"Sidney Sousa\",\r\n\t\"email\": \"sidney@email.com\",\r\n\t\"phone\": \"(99) 99999-9999\",\r\n\t\"birthday\": \"2025-10-28\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{baseURL}}/contacts",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"contacts"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find contacts by name",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('should retrieve correct contacts', () => {\r",
+							"pm.test('deve recuperar o logradouro de um CEP previamente cadastrado',()=>{\r",
 							"    pm.response.to.have.status(200)\r",
 							"    const response = pm.response.json()\r",
-							"    const { contacts } = response\r",
-							"    pm.expect(contacts.length).to.greaterThan(0)\r",
-							"    const contactName = pm.collectionVariables.get('contactName')\r",
-							"    const contact = contacts[0]\r",
-							"    const verification = contact.name.toLowerCase().includes(contactName.toLowerCase())\r",
-							"    pm.expect(verification).to.equal(true)\r",
+							"    const {endereco} = response\r",
+							"    const cep = '79200-000'\r",
+							"    const expectedLogradouro = 'Aquidauana'\r",
+							"    pm.expect(endereco._id).to.not.null\r",
+							"    pm.expect(endereco.cep).to.equal(cep)\r",
+							"    pm.expect(endereco.logradouro).to.equal(expectedLogradouro)\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -242,35 +175,32 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/contacts/name/{{contactName}}",
+					"raw": "{{baseURL}}/ceps/busca/cep/79200-000",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"contacts",
-						"name",
-						"{{contactName}}"
+						"ceps",
+						"busca",
+						"cep",
+						"79200-000"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Find contacts by name substring",
+			"name": "deve retornar mensagem de não encontrado para um CEP não previamente cadastrado",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('should retrieve correct contacts', () => {\r",
-							"    pm.response.to.have.status(200)\r",
+							"pm.test('deve retornar mensagem de não encontrado para um CEP não previamente cadastrado',()=>{\r",
+							"    pm.response.to.have.status(404)\r",
 							"    const response = pm.response.json()\r",
-							"    const { contacts } = response\r",
-							"    pm.expect(contacts.length).to.greaterThan(0)\r",
-							"    const contactName = pm.collectionVariables.get('contactNameSubStr')\r",
-							"    const contact = contacts[0]\r",
-							"    const verification = contact.name.toLowerCase().includes(contactName.toLowerCase())\r",
-							"    pm.expect(verification).to.equal(true)\r",
+							"    const {mensagem} = response\r",
+							"    pm.expect(mensagem).to.equal('Logradouro não encontrado')\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -281,87 +211,32 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/contacts/name/{{contactNameSubStr}}",
+					"raw": "{{baseURL}}/ceps/busca/cep/79200-001",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"contacts",
-						"name",
-						"{{contactNameSubStr}}"
+						"ceps",
+						"busca",
+						"cep",
+						"79200-001"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "FInd contacts by birthday period",
+			"name": "não deve recuperar o logradouro de um CEP com formato inválido",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('should retrieve correct contacts by birthday period', () => {\r",
-							"    pm.response.to.have.status(200)\r",
-							"    const response = pm.response.json()\r",
-							"    const { contacts } = response\r",
-							"    pm.expect(contacts.length).to.greaterThan(0)\r",
-							"    const start = pm.collectionVariables.get('startDate')\r",
-							"    const end = pm.collectionVariables.get('endDate')\r",
-							"    const startDate = new Date(start)\r",
-							"    const endDate = new Date(end)\r",
-							"\r",
-							"    contacts.forEach((c) => {\r",
-							"        const { birthday } = c\r",
-							"        const birthdayDate = new Date(birthday)\r",
-							"        const verification = birthdayDate >= startDate && birthdayDate <= endDate\r",
-							"        pm.expect(verification).to.equal(true)\r",
-							"    })\r",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{baseURL}}/contacts/birthday?start={{startDate}}&end={{endDate}}",
-					"host": [
-						"{{baseURL}}"
-					],
-					"path": [
-						"contacts",
-						"birthday"
-					],
-					"query": [
-						{
-							"key": "start",
-							"value": "{{startDate}}"
-						},
-						{
-							"key": "end",
-							"value": "{{endDate}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "FInd contacts with birthday period start date greater than end date",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test('should not retrieve contacts when start date is greater than end date', () => {\r",
+							"pm.test('não deve recuperar o logradouro de um CEP com formato inválido',()=>{\r",
 							"    pm.response.to.have.status(400)\r",
 							"    const response = pm.response.json()\r",
-							"    const { errorMessages } = response\r",
-							"    const message = errorMessages[0]\r",
-							"    pm.expect(message).to.equal('Start date cannot be greater than end date')\r",
+							"    const {mensagem} = response\r",
+							"    pm.expect(mensagem).to.equal('CEP inválido')\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -372,23 +247,91 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseURL}}/contacts/birthday?start={{endDate}}&end={{startDate}}",
+					"raw": "{{baseURL}}/ceps/busca/cep/79200000",
 					"host": [
 						"{{baseURL}}"
 					],
 					"path": [
-						"contacts",
-						"birthday"
+						"ceps",
+						"busca",
+						"cep",
+						"79200000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deve recuperar o CEP de um logradouro previamente cadastrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('deve recuperar o CEP de um logradouro previamente cadastrado',()=>{\r",
+							"    pm.response.to.have.status(200)\r",
+							"    const response = pm.response.json()\r",
+							"    const logradouro = 'Aquidauana';\r",
+							"    const expectedCep = '79200-000';\r",
+							"    const {endereco} = response\r",
+							"    pm.expect(endereco._id).to.not.null\r",
+							"    pm.expect(endereco.cep).to.equal(expectedCep)\r",
+							"    pm.expect(endereco.logradouro).to.equal(logradouro)\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/ceps/busca/logradouro/Aquidauana",
+					"host": [
+						"{{baseURL}}"
 					],
-					"query": [
-						{
-							"key": "start",
-							"value": "{{endDate}}"
-						},
-						{
-							"key": "end",
-							"value": "{{startDate}}"
-						}
+					"path": [
+						"ceps",
+						"busca",
+						"logradouro",
+						"Aquidauana"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deve retornar mensagem de não encontrado para um logradouro não previamente cadastrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('deve retornar mensagem de não encontrado para um logradouro não previamente cadastrado',()=>{\r",
+							"    pm.response.to.have.status(404)\r",
+							"    const response = pm.response.json()\r",
+							"    const {mensagem} = response\r",
+							"    pm.expect(mensagem).to.equal('CEP não encontrado')\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseURL}}/ceps/busca/logradouro/Anastácio",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"ceps",
+						"busca",
+						"logradouro",
+						"Anastácio"
 					]
 				}
 			},
@@ -418,27 +361,7 @@
 	"variable": [
 		{
 			"key": "baseURL",
-			"value": "http://localhost:3001",
-			"type": "string"
-		},
-		{
-			"key": "contactName",
-			"value": "Sidney Sousa",
-			"type": "string"
-		},
-		{
-			"key": "contactNameSubStr",
-			"value": "OUS",
-			"type": "string"
-		},
-		{
-			"key": "startDate",
-			"value": "1990-01-01",
-			"type": "string"
-		},
-		{
-			"key": "endDate",
-			"value": "2010-12-31",
+			"value": "https://cep-api-cicd.vercel.app/",
 			"type": "string"
 		}
 	]
