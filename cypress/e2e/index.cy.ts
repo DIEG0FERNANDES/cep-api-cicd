@@ -74,8 +74,8 @@ describe('Testes sobre cadastro e consulta de Códigos de Endereçamento Postal'
   });
 
   it('deve recuperar o logradouro de um CEP previamente cadastrado', () => {
-    const cep = '79200-000';
-    const expectedLogradouro = 'Aquidauana';
+    const cep = '79210-000';
+    const expectedLogradouro = 'Anástacio';
 
     const requestOptions: Partial<Cypress.RequestOptions> = {
       method: 'GET',
@@ -94,7 +94,7 @@ describe('Testes sobre cadastro e consulta de Códigos de Endereçamento Postal'
   });
 
   it('deve retornar mensagem de não encontrado para um CEP não previamente cadastrado', () => {
-    const cep = '79200-001';
+    const cep = '79200-000';
 
     const requestOptions: Partial<Cypress.RequestOptions> = {
       method: 'GET',
@@ -128,8 +128,8 @@ describe('Testes sobre cadastro e consulta de Códigos de Endereçamento Postal'
   });
 
   it('deve recuperar o CEP de um logradouro previamente cadastrado', () => {
-    const logradouro = 'Aquidauana';
-    const expectedCep = '79200-000';
+    const logradouro = 'Anástacio';
+    const expectedCep = '79210-000';
 
     const requestOptions: Partial<Cypress.RequestOptions> = {
       method: 'GET',
@@ -148,7 +148,7 @@ describe('Testes sobre cadastro e consulta de Códigos de Endereçamento Postal'
   });
 
   it('deve retornar mensagem de não encontrado para um logradouro não previamente cadastrado', () => {
-    const logradouro = 'Anastácio';
+    const logradouro = 'Aquidauana';
 
     const requestOptions: Partial<Cypress.RequestOptions> = {
       method: 'GET',
