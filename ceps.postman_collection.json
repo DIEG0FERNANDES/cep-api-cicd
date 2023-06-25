@@ -30,7 +30,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('deve salvar um CEP com dados validos',()=>{\r",
+							"pm.test('deve salvar um CEP com dados válidos',()=>{\r",
 							"    pm.response.to.have.status(201)\r",
 							"    const response = pm.response.json()\r",
 							"    const {mensagem} = response\r",
@@ -72,7 +72,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test('nao deve salvar um CEP com um número de CEP inválido',()=>{\r",
+							"pm.test('não deve salvar um CEP com um número de CEP inválido',()=>{\r",
 							"    pm.response.to.have.status(400)\r",
 							"    const response = pm.response.json()\r",
 							"    const {mensagensDeErro} = response\r",
