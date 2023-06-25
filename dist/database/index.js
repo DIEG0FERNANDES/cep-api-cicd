@@ -17,7 +17,7 @@ const mongoose_1 = require("mongoose");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const connectToMongoDB = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield (0, mongoose_1.connect)(`${process.env.DATABASE_URL}`);
+    yield (0, mongoose_1.connect)(`${process.env.DB_URL}`);
 });
 exports.connectToMongoDB = connectToMongoDB;
 mongoose_1.connection.on('connecting', () => console.log('Opening connection to database...'));
