@@ -363,7 +363,7 @@
 	"variable": [
 		{
 			"key": "baseURL",
-			"value": "https://cep-api-cicd.vercel.app",
+			"value": "https://cep-api-cicd-test.vercel.app",
 			"type": "string"
 		}
 	]
